@@ -1,0 +1,66 @@
+﻿<UserControl x:Class="CoolImageEffects.View.DoubleSliderView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CoolImageEffects"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300"
+             Name="DoubleSliderColourView"
+             >
+    <UserControl.Resources>
+        <local:StringToBrushConverter x:Key="StringToBrush"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height=".4*"></RowDefinition>
+            <RowDefinition Height=".4*"></RowDefinition>
+            <RowDefinition Height=".2*" ></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel>
+        <Label Content="{Binding SliderNameOne}"></Label>
+        <Slider Grid.Row="0"
+                Name="SliderOne"
+                Maximum="{Binding MaxSliderOne}"               
+                Minimum="{Binding MinSliderOne}"
+                Value="{Binding SliderOneValue,Mode=TwoWay}"                
+                ></Slider>
+            <TextBlock Text="{Binding Path=Value,ElementName=SliderOne}" HorizontalAlignment="Center"></TextBlock>
+        </StackPanel>
+        <StackPanel Grid.Row="1">
+        <Label Content="{Binding SliderNameTwo}"></Label>
+        <Slider 
+            Name="SliderTwo"
+            Maximum="{Binding MaxSliderTwo}"               
+                Minimum="{Binding MinSliderTwo}"
+                Value="{Binding SliderTwoValue,Mode=TwoWay}"
+            ></Slider>
+            <TextBlock Text="{Binding Path=Value,ElementName=SliderTwo}" HorizontalAlignment="Center"></TextBlock>
+        </StackPanel>
+        <ListBox Name="ImageCollection"  
+                     ItemsSource="{Binding ColourSelectionOption}" 
+                     HorizontalAlignment="Left"                                               
+                     Grid.Row="2"
+                     >
+            <ListBox.Template>
+                <ControlTemplate>
+                    <Border>
+                        <StackPanel Orientation="Horizontal" IsItemsHost="True"/>
+                    </Border>
+                </ControlTemplate>
+            </ListBox.Template>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Button
+                            Command="{Binding  Path=DataContext.SelectColourCommand,ElementName=DoubleSliderColourView}"                                                         
+                            CommandParameter="{Binding}"    
+                            >
+                        <Button.Content>
+                            <Rectangle  Height="20" Width="20" Fill="{Binding Converter={StaticResource StringToBrush}}"></Rectangle>
+                        </Button.Content>
+                    </Button>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+</UserControl>

@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="CoolImageEffects.View.SliderView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"             
+             mc:Ignorable="d"   
+             Name="sliderView"
+             >
+    <StackPanel>
+        <Label Content="{Binding SliderName}"/>
+        <Slider Name="SelectMagnitude" Minimum="{Binding Minimum}" 
+                Maximum="{Binding Max}"  
+                Value="{Binding SliderValue,Mode=TwoWay}" 
+                Margin="0,10,0,10"
+                IsSnapToTickEnabled="True"                
+                TickFrequency ="{Binding StepSize}"
+                >           
+        </Slider>
+        <Label Content="{Binding Path= Value,ElementName=SelectMagnitude}" HorizontalAlignment="Center"></Label>     
+    </StackPanel>
+</UserControl>
