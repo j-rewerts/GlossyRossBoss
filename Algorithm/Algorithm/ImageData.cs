@@ -380,7 +380,7 @@ namespace Algorithm {
         /// Computes the scaled width and height of the image, so as to 
         /// maintain the aspect ratio of original image.
         /// </summary>
-        void ComputeScaledWidthAndHeight(int size = 600) {
+        void ComputeScaledWidthAndHeight(int size = 1260) {
             if (originalWidth > originalHeight) {
                 scaledWidth = size;
                 scaledHeight = originalHeight * size / originalWidth;
